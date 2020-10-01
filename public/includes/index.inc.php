@@ -1,6 +1,7 @@
 <?php
     // Sørger for at der kan oprettes forbindelse til databasen
-    require_once("../dbconnect.php");
+    // Bruger $_SERVER['DOCUMENT_ROOT'] for at sikre at der er adgang til den rette fil
+    require_once($_SERVER['DOCUMENT_ROOT'] . "/Nicklas/dbconnect.php");
 
     // Opretter en klasse
     class Boat{
