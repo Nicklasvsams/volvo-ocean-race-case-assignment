@@ -6,6 +6,8 @@
     --primary-hf: black;
 }
 
+
+/* Elements */
 #header{
     background-color: var(--primary-hf) !important;
 }
@@ -15,6 +17,20 @@ body{
     background-color: var(--primary-bg) !important;
 }
 
+a{
+    color:white !important;
+    text-decoration: none;
+}
+
+a:hover{
+    text-decoration: none !important;
+}
+
+canvas {
+    border: 1px solid black;
+}
+
+/* Classes */
 .footer{
     position: fixed;
     left: 0;
@@ -27,33 +43,13 @@ body{
     vertical-align: center;
 }
 
-a{
-    color:white !important;
-    text-decoration: none;
-}
-
-a:hover{
-    text-decoration: none !important;
-}
-
 .red{
     color: red !important;
 }
 
-#foot-desc{
-    font-size: 1vw;
-}
-
-#foot-desc-copy{
-    font-size: 1.3vw;
-}
-
-#foot-desc-adm{
-    font-size: 2vw;
-}
-
-canvas {
-    border: 1px solid black;
+.adminboat{
+    height: 100%;
+    width: auto;
 }
 
 .teaminfo{
@@ -62,15 +58,6 @@ canvas {
     display: inline-block;
     margin-left: 10px;
     color: var(--primary-hf);
-}
-
-#teaminfo-wrapper{
-    padding-top: 10px;
-}
-
-.adminboat{
-    height: 100%;
-    width: auto;
 }
 
 .boatimgcol{
@@ -92,3 +79,21 @@ canvas {
     width: 100%; 
     height: 100%; 
 }
+
+/* ID */
+#foot-desc{
+    font-size: 1vw;
+}
+
+#foot-desc-copy{
+    font-size: 1.3vw;
+}
+
+#foot-desc-adm{
+    font-size: 2vw;
+}
+
+#teaminfo-wrapper{
+    padding-top: 10px;
+}
+

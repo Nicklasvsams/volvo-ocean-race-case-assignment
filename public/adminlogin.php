@@ -1,4 +1,5 @@
 <?php
+    // Henter header.php for at vise header elementet
     require("header.php");
 ?>
 
@@ -9,6 +10,7 @@
         <div class="row">
             <div class="col-12 d-flex justify-content-center">
                 <?php
+                //Hvis klienten er logget ind som admin vises en logud knap
                     if(isset($_SESSION['username'])){
                         if($_SESSION['username'] == "admin"){
                             $user = $_SESSION['username'];
@@ -22,6 +24,7 @@
                             echo "</div>"; 
                         }
                     }
+                    // Hvis klienten ikke er logget ind som admin, vises en logind form
                     else{
                         echo "<h3>Admin <span class='red'>login</span></h3>";
                         echo "</div>";
@@ -46,5 +49,6 @@
 </main>
 
 <?php
+    // Henter footer.php for at vise footer elementet
     require("footer.php");
 ?>

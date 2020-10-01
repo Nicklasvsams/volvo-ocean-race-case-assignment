@@ -1,6 +1,7 @@
 <?php
 // Tjekker hvorvidt at der er blevet sendt en "POST" forespørgsel
 if (isset($_POST['submit-login'])){
+    
     // Sørger for at der kan oprettes forbindelse til databasen
     require_once("../../dbconnect.php");
 

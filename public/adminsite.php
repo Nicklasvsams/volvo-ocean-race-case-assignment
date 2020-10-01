@@ -1,4 +1,5 @@
 <?php
+    // Henter header.php for at vise header elementet
     require('header.php');
 ?>
 
@@ -16,21 +17,36 @@
             <div class="col-sm-6">
                 <form action='includes/adminsite.inc.php' method="post">
     <?php
+
+    // Tjekker hvorvidt admin er logget ind
     if(isset($_SESSION['username'])){
         if($_SESSION['username'] == "admin"){
+
+            // Tillader forbindelse til database
             require_once("../dbconnect.php");
 
-            $query = "SELECT * FROM (boatscore) ORDER BY (point) desc";
+            // Database forespørgsel (Henter alle rækker fra "boatscore" tabellen, sorteret efter point)
+            $query = "SELECT * 
+            FROM (boatscore) 
+            ORDER BY (point) desc";
+
+            // Initialiserer et database statement
             $stmt = mysqli_stmt_init($db_connection);
     
+            // Tjekker hvorvidt forespørgslen er gyldig
             if(!mysqli_stmt_prepare($stmt, $query)){
-                header("Location: ../public/index.php?error=sqlerror");
+                // Sender klienten til index hvis der er en fejl med databasen
+                header("Location: index.php?error=sqlerror");
                 exit();
             }
             else{
+                // Eksekverer forespørgslen
                 mysqli_stmt_execute($stmt);
     
+                // Gemmer resultat i en variabel
                 $result = mysqli_stmt_get_result($stmt);
+
+                // Variabel bundet til "name" attribut i input element
                 $id = 0;
                 while($row = $result->fetch_assoc()){
                     echo 
@@ -46,12 +62,14 @@
                         </div> 
                     </div>";
 
+                    // Tilføjer +1 for hvert loop
                     $id = $id + 1;
                 }
             }
         }
     }
     else{
+        // Sender klienten til index hvis de ikke er logget ind som admin
         header("Location: ../public/index.php?error=notadmin");
         exit();
     }
@@ -64,5 +82,6 @@
 </main>
 
 <?php
+    // Henter footer.php for at vise footer elementet
     require('footer.php');
 ?>

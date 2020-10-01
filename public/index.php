@@ -1,4 +1,5 @@
 <?php
+    // Henter header.php for at vise header elementet
     require("header.php");
 ?>
 
@@ -12,8 +13,10 @@
         </div>
         <div id="teaminfo-wrapper">
           <?php
+            // Henter business logic for index.php så vi kan bruge dets klasser og funktioner
             require('includes/index.inc.php');
             
+            // Viser information fra den hentede klasse (Viser hold information)
             foreach ($boats as $boat){
               echo "<div class='teaminfo' points='$boat->points' teamname='$boat->name' imgsrc='$boat->imgsrc'>Point: $boat->points<br>Holdnavn: $boat->name.</div>";
             }
@@ -24,6 +27,7 @@
 </div>
 <div class="container">
   <div class="row d-flex justify-content-around">
+    <!-- Embedede youtube videoer -->
     <div class="col-sm-5">
       <div class='embed-container'>
         <iframe width="560" height="315" src="https://www.youtube.com/embed/g8D3zQ9Y03U" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
@@ -42,5 +46,6 @@
 
 
 <?php
+    // Henter footer.php for at vise footer elementet
     require("footer.php");
 ?>

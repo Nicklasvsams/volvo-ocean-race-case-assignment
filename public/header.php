@@ -1,25 +1,38 @@
 <?php
+    // Sørger for at session bliver bibeholdt
     session_start();
-    require("/opt/lampp/htdocs/Nicklas/dbconnect.php");
+
+    // Tillader forbindelse til database
+    require("../dbconnect.php");
+
+    // Opretter et unikt cookie ID
     $cookie_name = uniqid();
 
+    // Hvis klienten ikke har nogen cookies relaterede til denne side, oprettes en cookie
     if(count($_COOKIE) === 0){
+        // Opretter en cookie for den givne klient
         setcookie($cookie_name, "value", time()+(34000+30), "/");
 
-        
+        // Database forespørgsel til at opdatere tæller
         $query_addcount = "UPDATE `counter` 
         SET `visits`= visits + 1
         WHERE visits = visits";
 
+        // Initialiserer et database statement
         $stmt_addcount = mysqli_stmt_init($db_connection);
 
+        // Tjekker hvorvidt forespørgslen er gyldig
         if(!mysqli_stmt_prepare($stmt_addcount, $query_addcount)){
-            echo 'Fejl';
+            // Sender klienten til index hvis der er en fejl med databasen
+            header("Location: index.php?error=sqlerror");
+            exit();
         }
         else{
+            // Eksekverer forespørgslen
             mysqli_stmt_execute($stmt_addcount);
         }
 
+        // Sørger for at tidligere brugte statement bliver kasseret
         mysqli_stmt_close($stmt_addcount);
     };
 ?>
@@ -41,6 +54,7 @@
             <img id="logo" src="media/site-logo.png" alt="logo">
         </a>
         <?php
+        // Viser et link til admin siden hvis admin er logget ind
         if(isset($_SESSION['username'])){
             if($_SESSION['username'] == "admin"){
                 echo 
@@ -50,21 +64,33 @@
             }
         }
         
+            // Database forespørgsel
             $query = "SELECT visits FROM (counter)";
+
+            // Initialiserer et database statement
             $stmt = mysqli_stmt_init($db_connection);
 
+            // Tjekker hvorvidt forespørgslen er gyldig
             if(!mysqli_stmt_prepare($stmt, $query)){
-                echo 'Fejl';
+                // Sender klienten til index hvis der er en fejl med databasen
+                header("Location: index.php?error=sqlerror");
+                exit();
             }
             else{
+                // Eksekverer forespørgslent
                 mysqli_stmt_execute($stmt);
+
+                // Gemmer resultatet i en variabel
                 $result = mysqli_stmt_get_result($stmt);
+
                 if($row = mysqli_fetch_assoc($result)){
+                    // Gemmer resultatet i en variabel og viser en tæller for unikke besøgende
                     $visitcount = (string)$row['visits'];
                     echo "<h2>Unikke besøgende: <span class='red'>$visitcount</span></h2>";
                 }
             }
 
+            // Sørger for at tidligere brugte statement bliver kasseret
             mysqli_stmt_close($stmt);
         ?>
     </nav>
