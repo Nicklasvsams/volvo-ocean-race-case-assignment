@@ -1,0 +1,94 @@
+/* Variables */
+:root {
+    --primary-bg: #4b4863;
+    --text-colour-1: white;
+    --text-colour-2: red;
+    --primary-hf: black;
+}
+
+#header{
+    background-color: var(--primary-hf) !important;
+}
+
+body{
+    color: var(--text-colour-1) !important; 
+    background-color: var(--primary-bg) !important;
+}
+
+.footer{
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 7vh;
+    background-color: var(--primary-hf);
+    color:white;
+    text-align: center;
+    vertical-align: center;
+}
+
+a{
+    color:white !important;
+    text-decoration: none;
+}
+
+a:hover{
+    text-decoration: none !important;
+}
+
+.red{
+    color: red !important;
+}
+
+#foot-desc{
+    font-size: 1vw;
+}
+
+#foot-desc-copy{
+    font-size: 1.3vw;
+}
+
+#foot-desc-adm{
+    font-size: 2vw;
+}
+
+canvas {
+    border: 1px solid black;
+}
+
+.teaminfo{
+    height: 70px;
+    width: 250px;
+    display: inline-block;
+    margin-left: 10px;
+    color: var(--primary-hf);
+}
+
+#teaminfo-wrapper{
+    padding-top: 10px;
+}
+
+.adminboat{
+    height: 100%;
+    width: auto;
+}
+
+.boatimgcol{
+    height: 80px;
+}
+
+.embed-container { 
+    position: relative; 
+    padding-bottom: 56.25%;
+    height: 0; 
+    overflow: hidden; 
+    max-width: 100%; 
+} 
+    
+.embed-container iframe, .embed-container object, .embed-container embed { 
+    position: absolute; 
+    top: 0; 
+    left: 0; 
+    width: 100%; 
+    height: 100%; 
+}
